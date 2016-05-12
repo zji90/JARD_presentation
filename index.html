@@ -282,9 +282,11 @@
 
 <p>Use EM-algorithm to estimate \(\mu_k\) and \(\sigma_k^2\)</p>
 
-<p>Assign peak states using the highest posterior probabilities \(p(Z_i|M_i,D_i)\)</p>
+<p>Assign peak states using the highest posterior probabilities \(\tilde{Z}_i=\argmax_k P(Z_i=k|\mu,\sigma^2)\)</p>
 
 <p>Rank peaks using the posterior probabilities (after normalization)</p>
+
+<p>\(P_{i\tilde{Z}_i}=\frac{P(Z_i=\tilde{Z}_i|\mu,\sigma^2)}{\sum_{j} P(Z_i=j|\mu,\sigma^2)}\) </p>
 
   </article>
   <!-- Presenter Notes -->

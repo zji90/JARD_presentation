@@ -189,9 +189,11 @@ $[N(M_i,\mu_2,\sigma_2^2)N(D_i,\mu_7,\sigma_7^2)]^{\delta(Z_i=5)}[N(M_i,\mu_2,\s
 
 Use EM-algorithm to estimate $\mu_k$ and $\sigma_k^2$
 
-Assign peak states using the highest posterior probabilities $p(Z_i|M_i,D_i)$
+Assign peak states using the highest posterior probabilities $\tilde{Z}_i=\argmax_k P(Z_i=k|\mu,\sigma^2)$
 
 Rank peaks using the posterior probabilities (after normalization)
+
+$P_{i\tilde{Z}_i}=\frac{P(Z_i=\tilde{Z}_i|\mu,\sigma^2)}{\sum_{j} P(Z_i=j|\mu,\sigma^2)}$ 
 
 ---
 
