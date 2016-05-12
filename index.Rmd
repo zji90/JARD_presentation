@@ -226,6 +226,19 @@ LH: K562 has signal, HUVEC has no signal;
 LL: K562 has no signal, HUVEC has signal;
 LM: Both K562 and HUVEC have no signal
 
+---
+
+## Future Work
+
+Validate the results 
+
+Check model assumptions on more regulome data
+
+Extend the model to deal with more than two conditions
+
+Compare to existing methods
+
+A unified and integrated software tool for analyzing regulome data with user-friendly interface
 
 
 
