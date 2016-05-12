@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JARD: Joint Analysis for Multiple Regulome Data</title>
+  <meta charset="utf-8">
+  <meta name="description" content="JARD: Joint Analysis for Multiple Regulome Data">
+  <meta name="author" content="Zhicheng Ji">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <aside class="gdbar">
+    <img src="assets/img/bloomberg_shield.png">
+  </aside>
+  <hgroup class="auto-fadein">
+    <h1>JARD: Joint Analysis for Multiple Regulome Data</h1>
+    <h2></h2>
+    <p>Zhicheng Ji<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<p>Next generation sequencing has been used to identify the locations of regulatory regions. We call them regulome data because they study the whole set of regulatory components in a cell.</p>
+
+<p><br></p>
+
+<p>ChIP-seq: Detect binding sites of transcription factors</p>
+
+<p><br></p>
+
+<p>DNase-seq, ATAC-seq, FAIRE-seq, MNase-seq: Detect chromatin accessibility</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-2" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="fig/seqoverview.jpg" width="42%"></center></p>
+
+<p>Source: Clifford A. Meyer and X. Shirley Liu (2014) Identifying and mitigating bias in next-generation sequencing methods for chromatin biology. Nat Rev Genet.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-3" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<p>Two foundamental steps in analyzing regulome data:</p>
+
+<p><br></p>
+
+<ol>
+<li>Peak Calling: Identify genomic regions with enriched signals</li>
+</ol>
+
+<p><br></p>
+
+<ol>
+<li>Differential Binding Analysis: Identify genomic loci that show differential epigenomic signals between two cell types/treatments/conditions</li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-4" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="fig/peakexample.jpg" width="100%"></center></p>
+
+<p>Source: Clifford A. Meyer and X. Shirley Liu (2014) Identifying and mitigating bias in next-generation sequencing methods for chromatin biology. Nat Rev Genet.</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-5" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<p>Two-stage Analysis:</p>
+
+<p>Methods for peak calling: Cisgenome, MACS, QuEST, HPeak, PeakSeq, BayesPeak</p>
+
+<p>Methods for differential analysis: DBChIP, MAnorm, DiffBind, limma, edgeR, DEseq</p>
+
+<p><br></p>
+
+<p>Disadvantage:</p>
+
+<p>Assignment of peak identities is potentially biased</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-6" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><center><img src="fig/objective1.png" width="80%"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-7" style="background:;">
+  <hgroup>
+    <h2>Introductions</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<p>One-stage Analysis: ChIPDiff, ODIN, THOR</p>
+
+<p><br></p>
+
+<p>Disadvantage: </p>
+
+<p>Peak identity scheme too simple: background; condition 1 enriched; condition 2 enriched</p>
+
+<p>Can only analyze two conditions</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-8" style="background:;">
+  <hgroup>
+    <h2>Objectives</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Jointly identify peak identities</p>
+
+<p><center><img src="fig/objective2.png" width="80%"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-9" style="background:;">
+  <hgroup>
+    <h2>Data</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><br></p>
+
+<p>K562 and HUVEC cell lines</p>
+
+<p>Histone modification ChIP-seq data for 8 histone marks and DNase-seq data </p>
+
+<p><br></p>
+
+<p>Preprocessing:</p>
+
+<ol>
+<li><p>All data are log2 transformed after adding pseudocount of 0.5.</p></li>
+<li><p>For each data type and cell type, the 2 replicates are averaged.</p></li>
+<li><p>Input signals are subtracted from ChIP-seq data.</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-10" style="background:;">
+  <hgroup>
+    <h2>Methods</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>For each bin, model the minimum signal of the two cell types (M=min(K562,HUVEC)) as well as the difference of signals between the two cell types (D=K562-HUVEC).</p>
+
+<p>Six states Z:</p>
+
+<ol>
+<li><p>Both K562 and HUVEC have no signal (M small; D around 0)</p></li>
+<li><p>K562 has no signal, HUVEC has signal (M small; D negative)</p></li>
+<li><p>K562 has signal, HUVEC has no signal (M small; D positive)</p></li>
+<li><p>Both K562 and HUVEC have signals, no differential (M large; D around 0)</p></li>
+<li><p>Both K562 and HUVEC have signals, K562 significantly lower than HUVEC (M large; D negative)</p></li>
+<li><p>Both K562 and HUVEC have signals, K562 significantly higher than HUVEC (M large; D positive)</p></li>
+</ol>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-11" style="background:;">
+  <hgroup>
+    <h2>Methods</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Empirical Distributions of M and D for H3K4me1 data</p>
+
+<p><center><img src="fig/histogram.png" width="100%"></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-12" style="background:;">
+  <hgroup>
+    <h2>Methods</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>Assume M and D are independent, for bin i:</p>
+
+<p>\((M_i,D_i|Z_i=1) \sim N(\mu_1,\sigma_1^2)N(\mu_3,\sigma_3^2)\)</p>
+
+<p>\((M_i,D_i|Z_i=2) \sim N(\mu_1,\sigma_1^2)N(\mu_4,\sigma_4^2)\)</p>
+
+<p>\((M_i,D_i|Z_i=3) \sim N(\mu_1,\sigma_1^2)N(\mu_5,\sigma_5^2)\)</p>
+
+<p>\((M_i,D_i|Z_i=4) \sim N(\mu_2,\sigma_2^2)N(\mu_6,\sigma_6^2)\)</p>
+
+<p>\((M_i,D_i|Z_i=5) \sim N(\mu_2,\sigma_2^2)N(\mu_7,\sigma_7^2)\)</p>
+
+<p>\((M_i,D_i|Z_i=6) \sim N(\mu_2,\sigma_2^2)N(\mu_8,\sigma_8^2)\)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-13" style="background:;">
+  <hgroup>
+    <h2>Methods</h2>
+  </hgroup>
+  <article data-timings="">
+    <p>The full likelihood is:</p>
+
+<p>\(p(M,D,Z)=\prod_i [N(M_i,\mu_1,\sigma_1^2)N(D_i,\mu_3,\sigma_3^2)]^{\delta(Z_i=1)}[N(M_i,\mu_1,\sigma_1^2)N(D_i,\mu_4,\sigma_4^2)]^{\delta(Z_i=2)}\)</p>
+
+<p>\([N(M_i,\mu_1,\sigma_1^2)N(D_i,\mu_5,\sigma_5^2)]^{\delta(Z_i=3)}[N(M_i,\mu_2,\sigma_2^2)N(D_i,\mu_6,\sigma_6^2)]^{\delta(Z_i=4)}\)</p>
+
+<p>\([N(M_i,\mu_2,\sigma_2^2)N(D_i,\mu_7,\sigma_7^2)]^{\delta(Z_i=5)}[N(M_i,\mu_2,\sigma_2^2)N(D_i,\mu_8,\sigma_8^2)]^{\delta(Z_i=6)}\)</p>
+
+<p>Use EM-algorithm to estimate \(\mu_k\) and \(\sigma_k^2\)</p>
+
+<p>Assign peak states using the highest posterior probabilities \(p(Z_i|M_i,D_i)\)</p>
+
+<p>Rank peaks using the posterior probabilities (after normalization)</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="" id="slide-14" style="background:;">
+  <hgroup>
+    <h2>Results</h2>
+  </hgroup>
+  <article data-timings="">
+    <table><thead>
+<tr>
+<th>Data</th>
+<th>HH</th>
+<th>HL</th>
+<th>HM</th>
+<th>LH</th>
+<th>LL</th>
+<th>LM</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>H3K4me1</td>
+<td>4601</td>
+<td>6893</td>
+<td>9340</td>
+<td>25199</td>
+<td>4569</td>
+<td>8395</td>
+</tr>
+<tr>
+<td>H3K4me2</td>
+<td>4956</td>
+<td>1249</td>
+<td>1838</td>
+<td>13372</td>
+<td>9977</td>
+<td>27605</td>
+</tr>
+<tr>
+<td>H3K4me3</td>
+<td>1624</td>
+<td>906</td>
+<td>3468</td>
+<td>24809</td>
+<td>2314</td>
+<td>25876</td>
+</tr>
+<tr>
+<td>H3K9ac</td>
+<td>1808</td>
+<td>970</td>
+<td>2805</td>
+<td>11957</td>
+<td>5340</td>
+<td>36117</td>
+</tr>
+<tr>
+<td>H3K9me1</td>
+<td>17561</td>
+<td>7674</td>
+<td>13789</td>
+<td>3393</td>
+<td>1820</td>
+<td>14760</td>
+</tr>
+<tr>
+<td>H3K27ac</td>
+<td>3247</td>
+<td>771</td>
+<td>1513</td>
+<td>3645</td>
+<td>4796</td>
+<td>45025</td>
+</tr>
+<tr>
+<td>H3K27me3</td>
+<td>8275</td>
+<td>6463</td>
+<td>15395</td>
+<td>25480</td>
+<td>1665</td>
+<td>1719</td>
+</tr>
+<tr>
+<td>H4K20me1</td>
+<td>18695</td>
+<td>7272</td>
+<td>11277</td>
+<td>3123</td>
+<td>1425</td>
+<td>17205</td>
+</tr>
+<tr>
+<td>DNase</td>
+<td>6664</td>
+<td>2205</td>
+<td>519</td>
+<td>35548</td>
+<td>12485</td>
+<td>1576</td>
+</tr>
+</tbody></table>
+
+<p><br></p>
+
+<p>HH: Both K562 and HUVEC have signals, K562 significantly higher than HUVEC;
+HL: Both K562 and HUVEC have signals, K562 significantly lower than HUVEC;
+HM: Both K562 and HUVEC have signals, no differential;
+LH: K562 has signal, HUVEC has no signal;
+LL: K562 has no signal, HUVEC has signal;
+LM: Both K562 and HUVEC have no signal</p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="segue dark" id="slide-15" style="background:;">
+  <hgroup>
+    <h2>Thank you!</h2>
+  </hgroup>
+  <article data-timings="">
+    
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Introductions'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='Introductions'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='Introductions'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='Introductions'>
+         4
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=5 title='Introductions'>
+         5
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=6 title='Introductions'>
+         6
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=7 title='Introductions'>
+         7
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=8 title='Objectives'>
+         8
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=9 title='Data'>
+         9
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=10 title='Methods'>
+         10
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=11 title='Methods'>
+         11
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=12 title='Methods'>
+         12
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=13 title='Methods'>
+         13
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=14 title='Results'>
+         14
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=15 title='Thank you!'>
+         15
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
