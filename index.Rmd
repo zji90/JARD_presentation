@@ -43,9 +43,11 @@ Two foundamental steps in analyzing regulome data:
 
 <br>
 
-1. Peak Calling: Identify genomic regions with enriched signals
+Peak Calling: Identify genomic regions with enriched signals
 
-2. Differential Binding Analysis: Identify genomic loci that show differential epigenomic signals between two cell types/treatments/conditions
+<br>
+
+Differential Binding Analysis: Identify genomic loci that show differential epigenomic signals between two cell types/treatments/conditions
 
 
 ---
