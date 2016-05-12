@@ -175,6 +175,12 @@ $(M_i,D_i|Z_i=5) \sim N(\mu_2,\sigma_2^2)N(\mu_7,\sigma_7^2)$
 
 $(M_i,D_i|Z_i=6) \sim N(\mu_2,\sigma_2^2)N(\mu_8,\sigma_8^2)$
 
+$\mu_1<\mu_2$
+
+$\mu_3<\mu_4<\mu_5$
+
+$\mu_6<\mu_7<\mu_8$
+
 ---
 
 ## Methods
