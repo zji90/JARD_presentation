@@ -230,6 +230,8 @@ LM: Both K562 and HUVEC have no signal
 
 ## Future Work
 
+<br>
+
 Validate the results 
 
 Check model assumptions on more regulome data
