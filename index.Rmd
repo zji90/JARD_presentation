@@ -242,8 +242,6 @@ Compare to existing methods
 
 A unified and integrated software tool for analyzing regulome data with user-friendly interface
 
----
-
 --- .segue .dark
 
 Thank you!
